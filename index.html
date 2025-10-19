@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dynamic Quote Generator</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dynamic Quote Generator — Storage & JSON</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align:center; padding:32px; background:#f7f7fb; }
+    #quoteDisplay { margin:20px auto; max-width:720px; padding:20px; background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.06); font-size:1.15rem; }
+    input[type="text"] { padding:8px 10px; margin:6px; width:220px; border-radius:6px; border:1px solid #ccc; }
+    button { padding:8px 12px; margin:6px; border-radius:6px; border:0; cursor:pointer; background:#0066cc; color:#fff; }
+    button.secondary { background:#666; }
+    .small { font-size:0.9rem; }
+    #controls { margin-top:16px; }
+    #importFile { margin-left:6px; }
+  </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- Display area for random quotes -->
-  <div id="quoteDisplay"></div>
+  <div id="quoteDisplay">Click "Show New Quote" to begin.</div>
 
-  <!-- Button to show new random quote -->
-  <button id="newQuote">Show New Quote</button>
+  <div id="controls">
+    <button id="newQuote">Show New Quote</button>
+    <button id="addQuoteBtn" class="secondary">Add Quote</button>
+    <button id="exportBtn" class="secondary">Export JSON</button>
+    <label for="importFile" class="small">Impo
 
-  <!-- Form for adding new quotes -->
-  <div>
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button id="addQuoteBtn">Add Quote</button>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
