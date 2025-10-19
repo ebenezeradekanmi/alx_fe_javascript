@@ -99,6 +99,22 @@ async function fetchQuotesFromServer() {
   }));
 }
 
+// ========== POST LOCAL QUOTES TO SERVER (SIMULATED) ==========
+async function postQuoteToServer(quote) {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(quote)
+    });
+    return await response.json();
+  } catch (err) {
+    console.error("Failed to post quote:", err);
+  }
+}
+
 // ========== SYNC QUOTES AND HANDLE CONFLICTS ==========
 async function syncQuotes() {
   try {
@@ -106,12 +122,18 @@ async function syncQuotes() {
     const existingTexts = quotes.map(q => q.text);
     let added = 0;
 
+    // Merge new server quotes
     serverQuotes.forEach(serverQuote => {
       if (!existingTexts.includes(serverQuote.text)) {
         quotes.push(serverQuote);
         added++;
       }
     });
+
+    // Simulate posting local quotes to server
+    for (const quote of quotes.slice(-2)) {
+      await postQuoteToServer(quote);
+    }
 
     if (added > 0) {
       saveQuotes();
@@ -143,4 +165,3 @@ window.onload = function () {
   }
   syncQuotes();
 };
-
