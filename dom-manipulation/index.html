@@ -1,34 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dynamic Quote Generator — Storage & JSON</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Quote Generator</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align:center; padding:28px; background:#f4f6fb; }
-    #quoteDisplay { margin:18px auto; max-width:760px; padding:18px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.06); font-size:1.05rem; }
-    input[type="text"] { padding:8px 10px; margin:6px; width:220px; border-radius:6px; border:1px solid #ccc; }
-    button { padding:8px 12px; margin:6px; border-radius:6px; border:0; cursor:pointer; background:#0a66c2; color:#fff; }
-    button.secondary { background:#5a6470; }
-    #controls { margin-top:12px; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    #quoteDisplay {
+      margin: 20px auto;
+      font-size: 1.3rem;
+      width: 70%;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    input, select, button {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .quote-inputs {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <!-- The main quote display (script may create/replace this if needed) -->
-  <div id="quoteDisplay">Click "Show New Quote" to begin.</div>
-
-  <!-- Controls: Show quote, export, import -->
-  <div id="controls">
-    <button id="newQuote">Show New Quote</button>
-    <button id="exportBtn" class="secondary">Export Quotes</button>
-    <label for="importFile" style="margin-left:8px;">Import JSON:</label>
-    <input type="file" id="importFile" accept=".json,application/json" />
+  <!-- Filter Dropdown -->
+  <div>
+    <label for="categoryFilter">Filter by Category:</label>
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+    </select>
   </div>
 
-  <!-- script.js implements createAddQuoteForm(), showRandomQuote(), addQuote(), import/export -->
+  <!-- Quote Display -->
+  <div id="quoteDisplay">Your quote will appear here...</div>
+
+  <!-- Buttons -->
+  <div>
+    <button id="newQuote">Show New Quote</button>
+  </div>
+
+  <!-- Add New Quote Section -->
+  <div class="quote-inputs">
+    <input type="text" id="newQuoteText" placeholder="Enter a new quote">
+    <input type="text" id="newQuoteCategory" placeholder="Enter quote category">
+    <button id="addQuoteBtn">Add Quote</button>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
+
 
