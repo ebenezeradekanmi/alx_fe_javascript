@@ -18,12 +18,12 @@ function saveQuotes() {
 // Display random quote and save last viewed to sessionStorage
 function showRandomQuote() {
   if (quotes.length === 0) {
-    quoteDisplay.textContent = "No quotes available. Add one below!";
+    quoteDisplay.innerHTML = "No quotes available. Add one below!";
     return;
   }
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const randomQuote = quotes[randomIndex];
-  quoteDisplay.textContent = `"${randomQuote.text}" — (${randomQuote.category})`;
+  quoteDisplay.innerHTML = `<p>"${randomQuote.text}"</p><em>(${randomQuote.category})</em>`;
   sessionStorage.setItem("lastQuote", JSON.stringify(randomQuote));
 }
 
@@ -31,14 +31,17 @@ function showRandomQuote() {
 function addQuote() {
   const newText = document.getElementById("newQuoteText").value.trim();
   const newCategory = document.getElementById("newQuoteCategory").value.trim();
+
   if (!newText || !newCategory) {
-    quoteDisplay.textContent = "⚠️ Please enter both quote text and category.";
+    quoteDisplay.innerHTML = "⚠️ Please enter both quote text and category.";
     return;
   }
+
   const newQuote = { text: newText, category: newCategory };
   quotes.push(newQuote);
   saveQuotes();
-  quoteDisplay.textContent = "✅ New quote added successfully!";
+  quoteDisplay.innerHTML = "✅ New quote added successfully!";
+
   document.getElementById("newQuoteText").value = "";
   document.getElementById("newQuoteCategory").value = "";
 }
@@ -72,7 +75,8 @@ addQuoteBtn.addEventListener("click", addQuote);
 const lastQuote = sessionStorage.getItem("lastQuote");
 if (lastQuote) {
   const parsed = JSON.parse(lastQuote);
-  quoteDisplay.textContent = `"${parsed.text}" — (${parsed.category})`;
+  quoteDisplay.innerHTML = `<p>"${parsed.text}"</p><em>(${parsed.category})</em>`;
 } else {
   showRandomQuote();
 }
+
