@@ -9,7 +9,10 @@ const notification = document.getElementById("notification");
 
 // ========== DISPLAY RANDOM QUOTE ==========
 function showRandomQuote() {
-  if (quotes.length === 0) return (quoteDisplay.innerHTML = "No quotes available.");
+  if (quotes.length === 0) {
+    quoteDisplay.innerHTML = "No quotes available.";
+    return;
+  }
   const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
   quoteDisplay.innerHTML = `"${randomQuote.text}" - <em>${randomQuote.category}</em>`;
   sessionStorage.setItem("lastQuote", JSON.stringify(randomQuote));
@@ -89,7 +92,7 @@ function exportToJsonFile() {
   link.click();
 }
 
-// ========== FETCH QUOTES FROM SERVER (SIMULATED) ==========
+// ========== FETCH QUOTES FROM SERVER ==========
 async function fetchQuotesFromServer() {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5");
   const data = await response.json();
@@ -99,7 +102,7 @@ async function fetchQuotesFromServer() {
   }));
 }
 
-// ========== POST LOCAL QUOTES TO SERVER (SIMULATED) ==========
+// ========== POST QUOTE TO SERVER ==========
 async function postQuoteToServer(quote) {
   try {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
@@ -112,56 +115,3 @@ async function postQuoteToServer(quote) {
     return await response.json();
   } catch (err) {
     console.error("Failed to post quote:", err);
-  }
-}
-
-// ========== SYNC QUOTES AND HANDLE CONFLICTS ==========
-async function syncQuotes() {
-  try {
-    const serverQuotes = await fetchQuotesFromServer();
-    const existingTexts = quotes.map(q => q.text);
-    let added = 0;
-
-    // Merge new server quotes
-    serverQuotes.forEach(serverQuote => {
-      if (!existingTexts.includes(serverQuote.text)) {
-        quotes.push(serverQuote);
-        added++;
-      }
-    });
-
-    // Simulate posting local quotes to server
-    for (const quote of quotes.slice(-2)) {
-      await postQuoteToServer(quote);
-    }
-
-    if (added > 0) {
-      saveQuotes();
-      populateCategories();
-      showNotification(`🔄 Synced ${added} new quotes from server.`);
-    }
-  } catch (err) {
-    console.error("Sync failed:", err);
-  }
-}
-
-// ========== SHOW NOTIFICATION ==========
-function showNotification(message) {
-  notification.innerText = message;
-  notification.style.display = "block";
-  setTimeout(() => (notification.style.display = "none"), 4000);
-}
-
-// ========== PERIODIC SYNC EVERY 20 SECONDS ==========
-setInterval(syncQuotes, 20000);
-
-// ========== INITIALIZE ON PAGE LOAD ==========
-window.onload = function () {
-  populateCategories();
-  const lastQuote = sessionStorage.getItem("lastQuote");
-  if (lastQuote) {
-    const q = JSON.parse(lastQuote);
-    quoteDisplay.innerHTML = `"${q.text}" - <em>${q.category}</em>`;
-  }
-  syncQuotes();
-};
