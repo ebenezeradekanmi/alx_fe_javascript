@@ -1,64 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dynamic Quote Generator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f4f4f9;
-      padding: 40px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Quote Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 40px;
+        background: #f4f4f4;
+      }
+      h1 {
+        color: #333;
+      }
+      #quoteDisplay {
+        font-size: 1.2em;
+        margin: 20px 0;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+      input {
+        margin: 5px;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      button {
+        padding: 8px 12px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Dynamic Quote Generator</h1>
 
-    #quoteDisplay {
-      margin: 20px auto;
-      font-size: 1.2em;
-      font-style: italic;
-      color: #333;
-      border: 2px solid #ccc;
-      padding: 15px;
-      border-radius: 10px;
-      background: #fff;
-      width: 60%;
-    }
+    <div id="quoteDisplay">Click "Show New Quote" to start!</div>
 
-    input {
-      padding: 10px;
-      margin: 5px;
-      width: 200px;
-    }
+    <button id="newQuote">Show New Quote</button>
 
-    button {
-      padding: 10px 15px;
-      margin: 10px;
-      border: none;
-      background: #4caf50;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+    <div style="margin-top: 20px;">
+      <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+      <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+      <button id="addQuoteBtn">Add Quote</button>
+    </div>
 
-    button:hover {
-      background: #45a049;
-    }
-  </style>
-</head>
-<body>
-  <h1>Dynamic Quote Generator</h1>
-
-  <div id="quoteDisplay">Click "Show New Quote" to begin!</div>
-
-  <button id="newQuote">Show New Quote</button>
-
-  <h2>Add a New Quote</h2>
-  <div>
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button id="addQuoteBtn">Add Quote</button>
-  </div>
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
