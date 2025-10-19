@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Quote Generator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Quote Generator with Sync</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,11 +12,9 @@
       text-align: center;
       padding: 30px;
     }
-
     h1 {
       color: #007bff;
     }
-
     #quoteDisplay {
       margin: 20px auto;
       font-size: 1.3rem;
@@ -26,7 +24,6 @@
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-
     input, select, button {
       padding: 10px;
       margin: 5px;
@@ -34,27 +31,32 @@
       border: 1px solid #ccc;
       font-size: 1rem;
     }
-
     button {
       background-color: #007bff;
       color: white;
       border: none;
       cursor: pointer;
     }
-
     button:hover {
       background-color: #0056b3;
     }
+    .quote-inputs { margin-top: 20px; }
 
-    .quote-inputs {
-      margin-top: 20px;
+    #notification {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background: #ffc107;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <h1>Dynamic Quote Generator</h1>
+  <h1>Dynamic Quote Generator (Sync Edition)</h1>
 
-  <!-- Filter Dropdown -->
+  <div id="notification"></div>
+
   <div>
     <label for="categoryFilter">Filter by Category:</label>
     <select id="categoryFilter">
@@ -62,15 +64,13 @@
     </select>
   </div>
 
-  <!-- Quote Display -->
   <div id="quoteDisplay">Your quote will appear here...</div>
 
-  <!-- Buttons -->
   <div>
     <button id="newQuote">Show New Quote</button>
+    <button id="syncBtn">Sync with Server</button>
   </div>
 
-  <!-- Add New Quote Section -->
   <div class="quote-inputs">
     <input type="text" id="newQuoteText" placeholder="Enter a new quote">
     <input type="text" id="newQuoteCategory" placeholder="Enter quote category">
@@ -80,5 +80,6 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
