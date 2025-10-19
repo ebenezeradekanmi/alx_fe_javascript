@@ -1,11 +1,9 @@
-// Initial quotes array with text and category
 const quotes = [
   { text: "The journey of a thousand miles begins with one step.", category: "Motivation" },
   { text: "Life is what happens when you're busy making other plans.", category: "Life" },
   { text: "In the middle of difficulty lies opportunity.", category: "Inspiration" },
   { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", category: "Perseverance" }
 ];
-
 // Get references to DOM elements
 const quoteDisplay = document.getElementById("quoteDisplay");
 const newQuoteBtn = document.getElementById("newQuote");
